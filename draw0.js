@@ -24,11 +24,9 @@ function drawHatchedCircle(x, y, r, col, hatchSpacing) {
   for (let angle = 0; angle < Math.PI * 2; angle += hatchSpacing) {
     let x1 = x + r * Math.cos(angle);
     let y1 = y + r * Math.sin(angle);
-    let x2 = x;
-    let y2 = y;
     ctx.beginPath();
-    ctx.moveTo(x1, y1);
-    ctx.lineTo(x2, y2);
+    ctx.moveTo(x, y);
+    ctx.lineTo(x1, y1);
     ctx.stroke();
   }
   ctx.lineWidth = 1;
@@ -78,7 +76,7 @@ document.addEventListener("keydown", function (event) {
   // Náhodné souřadnice a barva pro nový tvar
   let x = Math.random() * canvas.width;
   let y = Math.random() * canvas.height;
-  let col = rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255});
+  let col = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
 
   switch (event.code) {
     case "KeyR":
@@ -87,8 +85,8 @@ document.addEventListener("keydown", function (event) {
     case "KeyS":
       drawNestedTriangles(x, y, 100, 4, col);
       break;
-      case "KeyZ":
-        drawRandomSpiral(x, y, 2, 2, col);
-        break;
+    case "KeyZ":
+      drawRandomSpiral(x, y, 2, 2, col);
+      break;
   }
 });
